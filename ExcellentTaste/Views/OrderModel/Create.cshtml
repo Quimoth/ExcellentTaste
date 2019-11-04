@@ -1,0 +1,77 @@
+﻿@model ExcellentTaste.ViewModels.OrderViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $('.multiSelect').multiselect({
+                includeSelectAllOption: true,
+                maxHeight: 300,
+                enableFiltering: false,
+                onDropdownShown: function () {
+                    $("li.filter").show();
+                },
+                onDropdownHidden: function () {
+                    $("li.filter").hide();
+                },
+                enableCaseInsensitiveFiltering: false
+            });
+        });</script>
+}
+<h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>OrderModel</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.OrderStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EnumDropDownListFor(model => model.OrderStatus, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.OrderStatus, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TimeStamp, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TimeStamp, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TimeStamp, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Tables, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.TableIds, new MultiSelectList(@Model.AllTables, "TableId", "TableId"), htmlAttributes: new { @class = "multiSelect", @multiple = "multiple" })
+            @Html.ValidationMessageFor(model => model.Tables, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Products, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.ProductIds, new MultiSelectList(@Model.AllProducts, "ProductId", "Name"), htmlAttributes: new { @class = "multiSelect", @multiple = "multiple" })
+            @Html.ValidationMessageFor(model => model.Products, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ExcellentTaste.Models.ProductOrderModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductOrderStatus)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductOrderStatus)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ProductOrderId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ProductOrderId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ProductOrderId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,69 @@
+﻿@model IEnumerable<ExcellentTaste.Models.OrderModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeStamp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Products)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tables)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderStatus)
+            </td>
+            <td>
+                @if (item.TimeStamp != null)
+                {
+                    <span>
+                        Date:
+                        @Html.DisplayFor(modelItem => item.TimeStamp.Value.Day)-@Html.DisplayFor(modelItem => item.TimeStamp.Value.Month)-@Html.DisplayFor(modelItem => item.TimeStamp.Value.Year) &nbsp;
+                        Time:
+                        @Html.DisplayFor(modelItem => item.TimeStamp.Value.TimeOfDay.Hours):@Html.DisplayFor(modelItem => item.TimeStamp.Value.TimeOfDay.Minutes)
+                    </span>
+                }
+            </td>
+            <td>
+                @foreach (var prod in item.Products)
+                {
+                    @Html.DisplayFor(modelItem => prod.Product.Name)<span>,</span>
+                }
+            </td>
+            <td>
+                @if (item.Tables != null)
+                {
+                    foreach (var table in item.Tables)
+                    {
+                        @Html.DisplayFor(modelItem => table.TableId)<span>,</span>
+                    }
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.OrderId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.OrderId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.OrderId })
+            </td>
+        </tr>
+    }
+
+</table>
