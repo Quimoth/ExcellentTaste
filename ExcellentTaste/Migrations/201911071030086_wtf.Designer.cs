@@ -7,13 +7,13 @@ namespace ExcellentTaste.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.0-preview1-19506-01")]
-    public sealed partial class Initial : IMigrationMetadata
+    public sealed partial class wtf : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(wtf));
         
         string IMigrationMetadata.Id
         {
-            get { return "201910311248233_Initial"; }
+            get { return "201911071030086_wtf"; }
         }
         
         string IMigrationMetadata.Source

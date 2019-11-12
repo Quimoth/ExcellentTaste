@@ -25,5 +25,7 @@ namespace ExcellentTaste.DAL
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
+
+        public System.Data.Entity.DbSet<ExcellentTaste.ViewModels.OrderViewModel> OrderModels { get; set; }
     }
 }

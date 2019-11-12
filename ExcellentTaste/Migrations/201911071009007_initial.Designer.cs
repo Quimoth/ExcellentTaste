@@ -7,13 +7,13 @@ namespace ExcellentTaste.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.0-preview1-19506-01")]
-    public sealed partial class productAvailability : IMigrationMetadata
+    public sealed partial class initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(productAvailability));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201911041313306_productAvailability"; }
+            get { return "201911071009007_initial"; }
         }
         
         string IMigrationMetadata.Source

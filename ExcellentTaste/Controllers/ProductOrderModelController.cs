@@ -18,7 +18,7 @@ namespace ExcellentTaste.Controllers
         // GET: ProductOrderModel
         public ActionResult Index()
         {
-            return View(db.ProductOrders.ToList());
+            return View(db.ProductOrders.Include("Product").ToList());
         }
 
         // GET: ProductOrderModel/Details/5

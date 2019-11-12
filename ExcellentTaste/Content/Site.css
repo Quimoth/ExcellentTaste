@@ -6,9 +6,159 @@
     font-family: Bahnschrift;
 }
 
-.jumbotron{
+.jumbotron {
     background-color: #666666;
 }
+
+.tableOverview {
+    max-width: 100%;
+}
+
+    .tableOverview div {
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-bottom: 40px;
+        display: inline-block;
+        height: 70px;
+        width: 70px;
+        text-align: center;
+        line-height: 70px;
+        font-size: 36px;
+    }
+
+.tableOverviewService div {
+    margin-left: 20px;
+    margin-right: 20px;
+    display: inline-block;
+    height: 70px;
+    width: 70px;
+    font-size: 36px;
+}
+
+    .tableOverviewService div:hover {
+        color: #999999;
+    }
+
+.tableTextCenter {
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 0px !important;
+    max-height: 70px;
+    max-width: 70px;
+}
+
+    .tableTextCenter label:hover {
+        cursor: pointer;
+    }
+
+.dropdown {
+    background-color: #666666;
+    color: white;
+}
+
+.dropdown-selected {
+    background-color: #666666;
+}
+
+.Delete {
+    margin-bottom: 45px !important;
+    max-height: 20px !important;
+    font-size: 15px !important;
+    text-align: center;
+    vertical-align: bottom;
+}
+
+.deleteText {
+    color: #eeeeee;
+}
+
+    .deleteText:hover {
+        color: #999999;
+        text-decoration: none;
+    }
+
+.Bezet {
+    background-color: #ff0000;
+    color: #eeeeee;
+}
+
+.Vrij {
+    background-color: #00ff21;
+    color: #eeeeee;
+}
+
+.Gereserveerd {
+    background-color: #ff6a00;
+    color: #eeeeee;
+}
+
+.FoodHeadBtns {
+    color: black;
+    width: 130px;
+    height: 50px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+}
+
+.foodtable {
+    /*background-color: red;*/
+    height: 87px;
+}
+
+.FoodList {
+    min-width: 100%;
+    padding-top: 0px;
+    /*background-color: red;*/
+    /*align-content: flex-start;*/
+}
+
+    .FoodList tbody {
+        display:block;
+        width: 100%;
+    }
+
+    .FoodList tbody tr {
+        display: block;
+        width: 100%;
+    }
+    .FoodList tbody tr td{
+        display: block;
+        width: 100%;
+    }
+
+.productSelect {
+    color: black;
+}
+
+.foodButtons {
+    color: black;
+    max-height: 50px;
+    width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis !important;
+}
+
+.foodButtonsMin {
+    color: black;
+    max-height: 50px;
+    width: 22px;
+    text-align: center;
+    padding: 0px;
+}
+
+.foodButtonsCntr {
+    color: black;
+    max-width: 22px;
+    text-align: center;
+    -moz-appearance: textfield;
+}
+
+    .foodButtonsCntr::-webkit-inner-spin-button,
+    .foodButtonsCntr::-webkit-outer-spin-button {
+        -webkit-appearance: none !important;
+        -moz-appearance: none !important;
+        margin: 0px !important;
+    }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {

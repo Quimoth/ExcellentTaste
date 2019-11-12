@@ -7,13 +7,13 @@ namespace ExcellentTaste.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.0-preview1-19506-01")]
-    public sealed partial class productQuantity : IMigrationMetadata
+    public sealed partial class removedViewModels : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(productQuantity));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(removedViewModels));
         
         string IMigrationMetadata.Id
         {
-            get { return "201911040904476_productQuantity"; }
+            get { return "201911071045090_removedViewModels"; }
         }
         
         string IMigrationMetadata.Source

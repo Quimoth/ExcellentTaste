@@ -5,27 +5,12 @@
 }
 
 <h2>TableOverview</h2>
+<div class="tableOverview">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TableStatus)
-        </th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TableStatus)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.TableId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.TableId }) |
-        </td>
-    </tr>
-}
-
-</table>
+    @foreach (var item in Model)
+    {
+        <div class=@item.TableStatus>
+            @Html.Label(item.TableId.ToString())
+        </div>
+    }
+</div>

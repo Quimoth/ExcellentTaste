@@ -9,25 +9,24 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TableStatus)
-        </th>
-        <th></th>
-    </tr>
+<div class="tableOverviewService">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TableStatus)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.TableId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.TableId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.TableId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
 
-</table>
+        <a href='@Url.Action("Edit", new { id = item.TableId })'>
+            <div class="wrapper">
+                <div class=@item.TableStatus>
+                    <div class="tableTextCenter">
+                        @Html.Label(item.TableId.ToString())
+                    </div>
+                </div>
+                <div class="Delete">
+                    @Html.ActionLink("Delete", "Delete", new { id = item.TableId }, htmlAttributes: new { @class = "deleteText" })
+                </div>
+            </div>
+        </a>
+
+    }
+
+</div>

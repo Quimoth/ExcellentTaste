@@ -1,0 +1,21 @@
+﻿@model IEnumerable<ExcellentTaste.Models.ProductModel>
+@if (Model.Count() > 0)
+{
+
+    <table id="@Model.First().ProductType.ToString()" class="FoodList" style="display: none;">
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>
+                        <button onclick="addProduct(title);" class="foodButtons" type="button" title="@product.ProductId">@product.Name</button>
+                        <input id="@product.ProductId" class="foodButtonsCntr" type="number" min="0" max="99" />
+                        <button onclick="removeProduct(title);" class="foodButtonsMin" type="button" title="@product.ProductId">-</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+<script src="~/Scripts/foodtypes.js"></script>
+

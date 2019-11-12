@@ -6,18 +6,18 @@ using System.Web;
 
 namespace ExcellentTaste.Models
 {
+    public enum Status
+    {
+        Preparing,
+        Done,
+        Delivered
+    }
     public class ProductOrderModel
     {
         [Key]
         public int ProductOrderId { get; set; }
         public ProductModel Product { get; set; }
         public Status ProductOrderStatus { get; set; }
-        public int Quantity { get; set; }
-        public enum Status
-        {
-            Waiting,
-            Prepared,
-            Delivered
-        }
     }
+
 }

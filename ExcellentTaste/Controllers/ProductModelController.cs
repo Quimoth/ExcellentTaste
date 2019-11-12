@@ -83,6 +83,7 @@ namespace ExcellentTaste.Controllers
         {
             if (ModelState.IsValid)
             {
+                productModel.Availability = 10;
                 db.Entry(productModel).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

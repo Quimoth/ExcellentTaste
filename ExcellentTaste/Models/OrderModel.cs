@@ -15,9 +15,7 @@ namespace ExcellentTaste.Models
         public OrderStat OrderStatus { get; set; }
         public enum OrderStat
         {
-            Waiting,
             Preparing,
-            Eating,
             Paid
         }
         [DataType(DataType.Time)]

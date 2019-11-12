@@ -1,0 +1,41 @@
+﻿@model ExcellentTaste.ViewModels.OrderViewModel
+
+@{
+    ViewBag.Title = "AddProduct";
+}
+
+<h2>AddProduct</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <table class="foodtable">
+        <tr>
+            @for (int i = 0; i < Model.FoodTypes.Count(); i++)
+            {
+                string foodType = Model.FoodTypes[i];
+                <th>
+                    <button onclick="showTheseFoods(title);" class="FoodHeadBtns" type="button" title="@foodType">@foodType</button>
+                </th>
+            }
+        </tr>
+    </table>
+    foreach (var foodType in Model.FoodTypes)
+    {
+        <span id="@foodType+Span" class="FoodList">
+            @{
+                Html.RenderPartial("FoodList", Model.AllProducts.Where(x => x.ProductType.ToString() == foodType));
+            }
+        </span>
+
+    }
+    <input id="hiddenInput" type="hidden" class="hidden" style="visibility: collapse;" tag="@Model.ProductIds">
+}
+
+<script src="~/Scripts/foodtypes.js"></script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

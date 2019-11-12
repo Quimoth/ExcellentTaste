@@ -7,13 +7,13 @@ namespace ExcellentTaste.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.0-preview1-19506-01")]
-    public sealed partial class orderadjusted : IMigrationMetadata
+    public sealed partial class decimalPrices : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(orderadjusted));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(decimalPrices));
         
         string IMigrationMetadata.Id
         {
-            get { return "201911011035456_orderadjusted"; }
+            get { return "201911071259233_decimalPrices"; }
         }
         
         string IMigrationMetadata.Source

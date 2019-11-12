@@ -137,21 +137,21 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201910311248233_Initial.cs" />
-    <Compile Include="Migrations\201910311248233_Initial.designer.cs">
-      <DependentUpon>201910311248233_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201911071009007_initial.cs" />
+    <Compile Include="Migrations\201911071009007_initial.designer.cs">
+      <DependentUpon>201911071009007_initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201911011035456_orderadjusted.cs" />
-    <Compile Include="Migrations\201911011035456_orderadjusted.designer.cs">
-      <DependentUpon>201911011035456_orderadjusted.cs</DependentUpon>
+    <Compile Include="Migrations\201911071030086_wtf.cs" />
+    <Compile Include="Migrations\201911071030086_wtf.designer.cs">
+      <DependentUpon>201911071030086_wtf.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201911040904476_productQuantity.cs" />
-    <Compile Include="Migrations\201911040904476_productQuantity.designer.cs">
-      <DependentUpon>201911040904476_productQuantity.cs</DependentUpon>
+    <Compile Include="Migrations\201911071045090_removedViewModels.cs" />
+    <Compile Include="Migrations\201911071045090_removedViewModels.designer.cs">
+      <DependentUpon>201911071045090_removedViewModels.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201911041313306_productAvailability.cs" />
-    <Compile Include="Migrations\201911041313306_productAvailability.designer.cs">
-      <DependentUpon>201911041313306_productAvailability.cs</DependentUpon>
+    <Compile Include="Migrations\201911071259233_decimalPrices.cs" />
+    <Compile Include="Migrations\201911071259233_decimalPrices.designer.cs">
+      <DependentUpon>201911071259233_decimalPrices.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\OrderModel.cs" />
@@ -177,6 +177,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\foodtypes.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -227,6 +228,10 @@
     <Content Include="Views\UserModel\Edit.cshtml" />
     <Content Include="Views\UserModel\Index.cshtml" />
     <Content Include="Views\TableModel\TableOverview.cshtml" />
+    <Content Include="Views\Home\Bar.cshtml" />
+    <Content Include="Views\Home\Kitchen.cshtml" />
+    <Content Include="Views\OrderModel\AddProduct.cshtml" />
+    <Content Include="Views\Shared\FoodList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -245,17 +250,17 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201910311248233_Initial.resx">
-      <DependentUpon>201910311248233_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201911071009007_initial.resx">
+      <DependentUpon>201911071009007_initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911011035456_orderadjusted.resx">
-      <DependentUpon>201911011035456_orderadjusted.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201911071030086_wtf.resx">
+      <DependentUpon>201911071030086_wtf.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911040904476_productQuantity.resx">
-      <DependentUpon>201911040904476_productQuantity.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201911071045090_removedViewModels.resx">
+      <DependentUpon>201911071045090_removedViewModels.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911041313306_productAvailability.resx">
-      <DependentUpon>201911041313306_productAvailability.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201911071259233_decimalPrices.resx">
+      <DependentUpon>201911071259233_decimalPrices.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -23,8 +23,44 @@
 
             var products = new List<ProductModel>
             {
-                new ProductModel{ProductId=0, Name="pasta",Price=10.06, ProductType=ProductModel.Type.Hoofd, Availability = 10},
-                new ProductModel{ProductId=1, Name="lasagna",Price=13.37, ProductType=ProductModel.Type.Voor, Availability = 10}
+                //Hoofdgerechten
+                new ProductModel{Name="Pasta",Price=13.37m, ProductType=Models.FoodType.Hoofd, Availability = 10},
+                new ProductModel{Name="Kalkoen",Price=13.37m, ProductType=Models.FoodType.Hoofd, Availability = 10},
+                new ProductModel{Name="Kindermenu",Price=13.37m, ProductType=Models.FoodType.Hoofd, Availability = 10},
+                //Voorgerechten
+                new ProductModel{Name="Salade",Price=13.37m, ProductType=Models.FoodType.Voor, Availability = 10},
+                new ProductModel{Name="Lasagna",Price=13.37m, ProductType=Models.FoodType.Voor, Availability = 10},
+                new ProductModel{Name="Asperge Soep",Price=13.37m, ProductType=Models.FoodType.Voor, Availability = 10},
+                //Nagerechten
+                new ProductModel{Name="Tiramisu",Price=13.37m, ProductType=Models.FoodType.Na, Availability = 10},
+                new ProductModel{Name="Sorbeeeeeeeeet",Price=13.37m, ProductType=Models.FoodType.Na, Availability = 10},
+                new ProductModel{Name="Irish Coffee",Price=13.37m, ProductType=Models.FoodType.Na, Availability = 10},
+                //Luch
+                new ProductModel{Name="Uitsmeiter",Price=13.37m, ProductType=Models.FoodType.Lunch, Availability = 10},
+                new ProductModel{Name="Tosti",Price=13.37m, ProductType=Models.FoodType.Lunch, Availability = 10},
+                new ProductModel{Name="Gekookt ei",Price=13.37m, ProductType=Models.FoodType.Lunch, Availability = 10},
+                //warme dranken
+                new ProductModel{Name="Koffie",Price=13.37m, ProductType=Models.FoodType.Warm, Availability = 10},
+                new ProductModel{Name="Thee",Price=13.37m, ProductType=Models.FoodType.Warm, Availability = 10},
+                new ProductModel{Name="Cappuccino",Price=13.37m, ProductType=Models.FoodType.Warm, Availability = 10},
+                //Koude dranken
+                new ProductModel{Name="Gola",Price=13.37m, ProductType=Models.FoodType.Koud, Availability = 10},
+                new ProductModel{Name="Appelsap",Price=13.37m, ProductType=Models.FoodType.Koud, Availability = 10},
+                new ProductModel{Name="Sinasappelsap",Price=13.37m, ProductType=Models.FoodType.Koud, Availability = 10},
+                //Alcoholische dranken
+                new ProductModel{Name="Bierrrrrrr",Price=13.37m, ProductType=Models.FoodType.Alcoholisch, Availability = 10},
+                new ProductModel{Name="Wijn",Price=13.37m, ProductType=Models.FoodType.Alcoholisch, Availability = 10},
+                new ProductModel{Name="Vodka",Price=13.37m, ProductType=Models.FoodType.Alcoholisch, Availability = 10},
+                new ProductModel{Name="Odka",Price=13.37m, ProductType=Models.FoodType.Alcoholisch, Availability = 10},
+                //borrel
+                new ProductModel{Name="Russian roulette",Price=13.37m, ProductType=Models.FoodType.Borrelhapjes, Availability = 100},
+                new ProductModel{Name="Bitterballen",Price=13.37m, ProductType=Models.FoodType.Borrelhapjes, Availability = 100},
+                new ProductModel{Name="Knakworstjes",Price=13.37m, ProductType=Models.FoodType.Borrelhapjes, Availability = 100},
+                new ProductModel{Name="Pinda's",Price=13.37m, ProductType=Models.FoodType.Borrelhapjes, Availability = 100},
+                new ProductModel{Name="Chips Naturel",Price=13.37m, ProductType=Models.FoodType.Borrelhapjes, Availability = 100},
+                new ProductModel{Name="Chips Paprika",Price=13.37m, ProductType=Models.FoodType.Borrelhapjes, Availability = 100},
+                new ProductModel{Name="Chips Kaas & Ui",Price=13.37m, ProductType=Models.FoodType.Borrelhapjes, Availability = 100},
+                new ProductModel{Name="Kaasblokjes",Price=13.37m, ProductType=Models.FoodType.Borrelhapjes, Availability = 100},
             };
 
             products.ForEach(s => context.Products.AddOrUpdate(s));
@@ -33,13 +69,14 @@
 
             var users = new List<UserModel>
             {
-                new UserModel{UserId=0, Email="henk@henk.nl", Password="123"}
+                new UserModel{Email="henk@henk.nl", Password="123"}
             };
             users.ForEach(s => context.Users.AddOrUpdate(s));
             context.SaveChanges();
 
             var tables = new List<TableModel>
             {
+                new TableModel{TableStatus=TableModel.TableStat.Bezet},
                 new TableModel{TableStatus=TableModel.TableStat.Vrij},
                 new TableModel{TableStatus=TableModel.TableStat.Bezet},
                 new TableModel{TableStatus=TableModel.TableStat.Gereserveerd},

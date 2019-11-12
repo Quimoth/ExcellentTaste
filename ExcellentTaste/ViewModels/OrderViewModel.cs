@@ -26,5 +26,18 @@ namespace ExcellentTaste.ViewModels
         public List<int> ProductIds { get; set; }
         public List<ProductModel> AllProducts { get; set; }
         public List<TableModel> AllTables { get; set; }
+
+        public List<string> FoodTypes
+        {
+            get
+            {
+                List<string> foodTypes = new List<string>();
+                for(int i = 0; i < 8; i++)
+                {                    
+                    foodTypes.Add(((FoodType)i).ToString());
+                }
+                return foodTypes;
+            }
+        }
     }
 }
