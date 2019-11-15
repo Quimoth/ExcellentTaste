@@ -26,6 +26,16 @@
             @Html.DisplayFor(model => model.TimeStamp)
         </dd>
 
+        <dt>
+            @Html.LabelFor(model => model.Products)
+        </dt>
+        <dd>
+
+            @foreach (var prod in Model.Products)
+            {
+                <text>@prod.Product.Name,</text>
+            }
+        </dd>
     </dl>
 </div>
 <p>

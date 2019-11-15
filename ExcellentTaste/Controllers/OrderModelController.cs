@@ -14,7 +14,7 @@ namespace ExcellentTaste.Controllers
 {
     public class OrderModelController : Controller
     {
-        private ETContext db = new ETContext();
+        private readonly ETContext db = new ETContext();
 
         // GET: OrderModel
         public ActionResult Index()
@@ -36,7 +36,7 @@ namespace ExcellentTaste.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            OrderModel orderModel = db.Orders.Find(id);
+            OrderModel orderModel = db.Orders.Include(order => order.Products.Select(x => x.Product)).First(x => x.OrderId == id);
             if (orderModel == null)
             {
                 return HttpNotFound();
@@ -44,13 +44,50 @@ namespace ExcellentTaste.Controllers
             return View(orderModel);
         }
 
+        public ActionResult OrderOverView(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            OrderViewModel orderModel = new OrderViewModel(db.Orders.Include(order => order.Products.Select(productOrder => productOrder.Product)).Include(t => t.Tables).First(x => x.OrderId ==id));
+            if (orderModel == null)
+            {
+                return HttpNotFound();
+            }
+            orderModel.ProductString = string.Empty;
+            foreach (ProductOrderModel product in orderModel.Products)
+            {
+                if (product.ProductOrderStatus == Status.Preparing && product.Product != null)
+                {
+                    orderModel.ProductString += product.Product.ProductId + ";";
+                }
+            }
+
+            return View(orderModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult OrderOverView([Bind(Include = "OrderId,OrderStatus,TimeStamp,Tables,TableIds,ProductIds,ProductString")] OrderViewModel orderViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+
+            }
+
+            return RedirectToAction("Index");
+        }
+
         // GET: OrderModel/Create
         public ActionResult Create()
         {
-            OrderViewModel newModel = new OrderViewModel();
-            newModel.AllTables = db.Tables.Where(x => x.TableStatus == TableModel.TableStat.Vrij).ToList();
-            newModel.AllProducts = db.Products.Where(x => x.Availability > 0).ToList();
-            newModel.TimeStamp = DateTime.Now;
+            OrderViewModel newModel = new OrderViewModel
+            {
+                AllTables = db.Tables.Where(x => x.TableStatus == TableModel.TableStat.Vrij).ToList(),
+                AllProducts = db.Products.Where(x => x.Availability > 0).ToList(),
+                TimeStamp = DateTime.Now
+            };
             string errMsg = "";
             if (TempData["ErrorMessage"] != null)
             {
@@ -65,7 +102,7 @@ namespace ExcellentTaste.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OrderId,OrderStatus,TimeStamp,Table,Tables,TableIds,ProductIds")] OrderViewModel orderViewModel)
+        public ActionResult Create([Bind(Include = "OrderId,OrderStatus,TimeStamp,Table,Tables,TableIds")] OrderViewModel orderViewModel)
         {
             if (orderViewModel.TableIds == null)
             {
@@ -74,23 +111,25 @@ namespace ExcellentTaste.Controllers
             }
             if (ModelState.IsValid)
             {
-                OrderModel order = new OrderModel();
-                order.TimeStamp = orderViewModel.TimeStamp;
-                order.Products = new List<ProductOrderModel>();
-                order.Tables = new List<TableModel>();
-                foreach (int prod in orderViewModel.ProductIds)
+                OrderModel order = new OrderModel
                 {
-                    ProductOrderModel productOrder = new ProductOrderModel()
-                    {
-                        Product = db.Products.First(x => x.ProductId == prod),
-                        ProductOrderStatus = Status.Preparing,
-                    };
-                    order.Products.Add(productOrder);
-                    ProductModel product = db.Products.First(x => x.ProductId == prod);
-                    product.Availability -= 1;
-                    db.Entry(product).State = EntityState.Modified;
-                    db.SaveChanges();
-                }
+                    TimeStamp = orderViewModel.TimeStamp,
+                    Products = new List<ProductOrderModel>(),
+                    Tables = new List<TableModel>()
+                };
+                //foreach (int prod in orderViewModel.ProductIds)
+                //{
+                //    ProductOrderModel productOrder = new ProductOrderModel()
+                //    {
+                //        Product = db.Products.First(x => x.ProductId == prod),
+                //        ProductOrderStatus = Status.Preparing,
+                //    };
+                //    order.Products.Add(productOrder);
+                //    ProductModel product = db.Products.First(x => x.ProductId == prod);
+                //    product.Availability -= 1;
+                //    db.Entry(product).State = EntityState.Modified;
+                //    db.SaveChanges();
+                //}
                 order.Tables.AddRange(db.Tables.Where(x => orderViewModel.TableIds.Contains(x.TableId)));
                 foreach (var table in db.Tables.Where(x => orderViewModel.TableIds.Contains(x.TableId)))
                 {
@@ -100,7 +139,7 @@ namespace ExcellentTaste.Controllers
                                 
                 db.Orders.Add(order);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("AddProduct", new { id = order.OrderId });
             }
             return View(orderViewModel);
         }
@@ -134,7 +173,7 @@ namespace ExcellentTaste.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "OrderId,OrderStatus,TimeStamp,Tables,TableIds,ProductIds")] OrderViewModel orderViewModel)
+        public ActionResult Edit([Bind(Include = "OrderId,OrderStatus,TimeStamp,Tables,TableIds,ProductIds,ProductString")] OrderViewModel orderViewModel)
         {
             if (orderViewModel.TableIds == null)
             {
@@ -145,6 +184,10 @@ namespace ExcellentTaste.Controllers
             {
                 OrderModel order = db.Orders.Include("Tables").First(x => x.OrderId == orderViewModel.OrderId);
                 order.Tables.AddRange(db.Tables.Where(table => orderViewModel.TableIds.Contains(table.TableId)));
+                foreach(TableModel table in db.Tables.Where(table => orderViewModel.TableIds.Contains(table.TableId)))
+                {
+                    table.TableStatus = TableModel.TableStat.Bezet;
+                }
                 order.TimeStamp = orderViewModel.TimeStamp;
                 db.Entry(order).State = EntityState.Modified;
                 db.SaveChanges();
@@ -192,6 +235,47 @@ namespace ExcellentTaste.Controllers
                 return HttpNotFound();
             }
             orderViewModel.AllProducts = db.Products.Where(x => x.Availability > 0).ToList();
+            foreach(ProductOrderModel product in orderViewModel.Products)
+            {
+                if(product.ProductOrderStatus == Status.Preparing)
+                {
+                    orderViewModel.ProductString += product.Product.ProductId + ";";
+                }
+            }
+            
+            return View(orderViewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddProduct([Bind(Include = "OrderId,OrderStatus,TimeStamp,Tables,TableIds,ProductIds,ProductString")] OrderViewModel orderViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                OrderModel order = db.Orders.Include("Tables").First(x => x.OrderId == orderViewModel.OrderId);
+                
+                if (orderViewModel.ProductString != null)
+                {
+                    List<string> products = orderViewModel.ProductString.Split(';').ToList();
+                    products.Remove(string.Empty);
+                    foreach (string product in products)
+                    {
+                        ProductOrderModel productOrder = new ProductOrderModel
+                        {
+                            Product = db.Products.Find(int.Parse(product)),
+                            ProductOrderStatus = Status.Preparing,
+                        };
+                        db.ProductOrders.Add(productOrder);
+                        db.SaveChanges();
+                        order.Products.Add(productOrder);
+                    }
+                }
+                db.Entry(order).State = EntityState.Modified;
+                db.SaveChanges();
+
+                return RedirectToAction("Details", new { id = order.OrderId });
+            }
+           
             return View(orderViewModel);
         }
 

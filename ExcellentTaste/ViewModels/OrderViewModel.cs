@@ -26,7 +26,7 @@ namespace ExcellentTaste.ViewModels
         public List<int> ProductIds { get; set; }
         public List<ProductModel> AllProducts { get; set; }
         public List<TableModel> AllTables { get; set; }
-
+        public string ProductString { get; set; }
         public List<string> FoodTypes
         {
             get

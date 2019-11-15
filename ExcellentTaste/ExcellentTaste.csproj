@@ -153,6 +153,10 @@
     <Compile Include="Migrations\201911071259233_decimalPrices.designer.cs">
       <DependentUpon>201911071259233_decimalPrices.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911121317334_addproducts.cs" />
+    <Compile Include="Migrations\201911121317334_addproducts.designer.cs">
+      <DependentUpon>201911121317334_addproducts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
@@ -201,7 +205,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\OrderModel\Create.cshtml" />
     <Content Include="Views\OrderModel\Delete.cshtml" />
     <Content Include="Views\OrderModel\Details.cshtml" />
@@ -227,11 +230,12 @@
     <Content Include="Views\UserModel\Details.cshtml" />
     <Content Include="Views\UserModel\Edit.cshtml" />
     <Content Include="Views\UserModel\Index.cshtml" />
-    <Content Include="Views\TableModel\TableOverview.cshtml" />
     <Content Include="Views\Home\Bar.cshtml" />
     <Content Include="Views\Home\Kitchen.cshtml" />
     <Content Include="Views\OrderModel\AddProduct.cshtml" />
     <Content Include="Views\Shared\FoodList.cshtml" />
+    <Content Include="Views\OrderModel\OrderOverView.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -261,6 +265,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911071259233_decimalPrices.resx">
       <DependentUpon>201911071259233_decimalPrices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911121317334_addproducts.resx">
+      <DependentUpon>201911121317334_addproducts.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -10,16 +10,40 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
+    @Html.HiddenFor(Model => Model.OrderId)
     <table class="foodtable">
         <tr>
-            @for (int i = 0; i < Model.FoodTypes.Count(); i++)
-            {
-                string foodType = Model.FoodTypes[i];
-                <th>
-                    <button onclick="showTheseFoods(title);" class="FoodHeadBtns" type="button" title="@foodType">@foodType</button>
-                </th>
-            }
+            <th>
+                <button onclick="showDrank();" type="button" id="DrinkButton" class="DrinkCategoryTabButton">Drank</button>
+
+
+                <button onclick="showEten();" type="button" id="FoodButton" class="FoodCategoryTabButton">Eten</button>
+
+            </th>
+        </tr>
+        <tr>
+            <td>
+                <div class="DrinkCategoryTab" id="DrinkCategoryTab" style="display: none;">
+                    @for (int i = 0; i < 3; i++)
+                    {
+                        string foodType = Model.FoodTypes[i];
+
+                        <span id="DrankKnoppen">
+                            <button id="@(foodType)Button" onclick="showTheseFoods(title);" class="FoodHeadBtns" type="button" title="@foodType">@foodType</button>
+                        </span>
+                    }
+                </div>
+                <div class="FoodCategoryTab" id="FoodCategoryTab" style="display: none;">
+                    @for (int i = 3; i < Model.FoodTypes.Count(); i++)
+                    {
+                        string foodType = Model.FoodTypes[i];
+
+                        <span id="FoodKnoppen">
+                            <button id="@(foodType)Button" onclick="showTheseFoods(title);" class="FoodHeadBtns" type="button" title="@foodType">@foodType</button>
+                        </span>
+                    }
+                </div>
+            </td>
         </tr>
     </table>
     foreach (var foodType in Model.FoodTypes)
@@ -31,10 +55,13 @@
         </span>
 
     }
-    <input id="hiddenInput" type="hidden" class="hidden" style="visibility: collapse;" tag="@Model.ProductIds">
-}
+    @Html.HiddenFor(Model => Model.ProductString, htmlAttributes: new { id = "hiddenInput" })
+    <div class="SubmitDiv">
+        <input type="submit" value="Plaats bestelling" class="SubmitButton">
+    </div>
 
-<script src="~/Scripts/foodtypes.js"></script>
+}
+@*<script src="~/Scripts/foodtypes.js"></script>*@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 

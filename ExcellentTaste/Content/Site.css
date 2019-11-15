@@ -6,8 +6,37 @@
     font-family: Bahnschrift;
 }
 
-.jumbotron {
-    background-color: #666666;
+address a,
+address a:hover {
+    color: #eeeeee;
+}
+
+p a,
+p a:hover {
+    color: #eeeeee;
+}
+
+.table tbody tr td a {
+    color: #eeeeee;
+}
+
+.BTListText,
+.BTListText:hover {
+    color: #eeeeee;
+}
+
+.btn-save {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #eeeeee;
+    background-color: transparent;
+    border-style: solid;
+    border-color: white;
+    border-width: 0.5px;
+    font-size: 20px;
+    padding: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .tableOverview {
@@ -60,6 +89,10 @@
     background-color: #666666;
 }
 
+#ProductList{
+    color: black;
+}
+
 .Delete {
     margin-bottom: 45px !important;
     max-height: 20px !important;
@@ -93,11 +126,34 @@
 }
 
 .FoodHeadBtns {
-    color: black;
+    color: #eeeeee;
+    background-color: transparent;
+    border-style: solid;
+    border-color: white;
+    border-width: 0.5px;
+    min-width: 100px;
+    font-size: 15px;
     width: 130px;
     height: 50px;
     margin-bottom: 5px;
-    margin-right: 10px;
+    margin-right: 5px;
+}
+
+.DrinkCategoryTabButton,
+.FoodCategoryTabButton {
+    color: #eeeeee;
+    background-color: transparent;
+    /*background-color: #666666;*/
+    border-style: solid;
+    border-color: white;
+    border-width: 2px;
+    font-weight: bold;
+    font-size: 20px;
+    min-width: 100px;
+    width: 130px;
+    height: 50px;
+    margin-right: 5px;
+    margin-bottom: 10px;
 }
 
 .foodtable {
@@ -113,42 +169,100 @@
 }
 
     .FoodList tbody {
-        display:block;
+        display: block;
         width: 100%;
     }
 
-    .FoodList tbody tr {
-        display: block;
+        .FoodList tbody tr {
+            display: block;
+            width: 100%;
+        }
+
+            .FoodList tbody tr td {
+                display: inline-block;
+                width: 100%;
+                border-style: solid;
+                border-color: white;
+                border-width: 0.5px;
+            }
+
+.SubmitDiv {
+    width: 100%;
+    margin-top: 20px;
+    font-size: 20px;
+    border-width: 4px;
+    font-weight: bold;
+    background-color:#666666;
+    padding:0px;
+}
+
+.SubmitButton {
+    color: #eeeeee;
+    background-color: transparent;
+    display: block;
+    min-width: 100%;
+    border-style: solid;
+    border-color: white;
+    border-width: 2px;
+}
+
+.foodTitle {
+    display: inline-block;
+    width: 90%;
+    float: left;
+    text-align: center;
+}
+
+    .foodTitle button {
         width: 100%;
     }
-    .FoodList tbody tr td{
-        display: block;
-        width: 100%;
+
+.foodCount {
+    display: inline-block;
+    min-width:50px;
+    width: 10%;
+    float: right;
+}
+
+    .foodCount button {
+        float: right;
     }
+
+    .foodCount input {
+        float: right;
+    }
+   
+
 
 .productSelect {
     color: black;
 }
 
 .foodButtons {
-    color: black;
+    color: #eeeeee;
+    border-style: none;
+    background-color: transparent;
     max-height: 50px;
-    width: 80%;
+    /*width: 50%;*/
     overflow: hidden;
     text-overflow: ellipsis !important;
 }
 
 .foodButtonsMin {
-    color: black;
+    color: #eeeeee;
+    background-color: transparent;
+    font-size: 15px;
+    font-weight: bold;
     max-height: 50px;
-    width: 22px;
+    width: 25px;
     text-align: center;
     padding: 0px;
 }
 
 .foodButtonsCntr {
-    color: black;
-    max-width: 22px;
+    background-color: #eeeeee;
+    color: #444444;
+    max-width: 25px;
     text-align: center;
     -moz-appearance: textfield;
 }

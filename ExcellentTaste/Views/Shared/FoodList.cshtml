@@ -2,20 +2,24 @@
 @if (Model.Count() > 0)
 {
 
-    <table id="@Model.First().ProductType.ToString()" class="FoodList" style="display: none;">
+    <table id="@Model.First().ProductType.ToString()" class="FoodList">
         <tbody>
             @foreach (var product in Model)
             {
                 <tr>
+
                     <td>
-                        <button onclick="addProduct(title);" class="foodButtons" type="button" title="@product.ProductId">@product.Name</button>
-                        <input id="@product.ProductId" class="foodButtonsCntr" type="number" min="0" max="99" />
-                        <button onclick="removeProduct(title);" class="foodButtonsMin" type="button" title="@product.ProductId">-</button>
+                        <div class="foodTitle">
+                            <button onclick="addProduct(title);" class="foodButtons" type="button" title="@product.ProductId">@product.Name</button>
+                        </div>
+                        <div class="foodCount">
+                            <button onclick="removeProduct(title);" class="foodButtonsMin" type="button" title="@product.ProductId">-</button>
+                            <input id="@product.ProductId" class="foodButtonsCntr" type="number" min="0" max="99" value="0" />                           
+                        </div>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 }
-<script src="~/Scripts/foodtypes.js"></script>
 

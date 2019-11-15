@@ -1,0 +1,60 @@
+﻿@model ExcellentTaste.ViewModels.OrderViewModel
+
+@{
+    ViewBag.Title = "OrderOverView";
+}
+
+<h2>OrderOverView</h2>
+
+<div>
+    <h4>OrderViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeStamp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TimeStamp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tables)
+        </dt>
+
+        <dd>
+            @foreach (var item in Model.Tables)
+            {
+                <label>@item.TableId,</label>
+            }
+        </dd>
+    </dl>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.OrderId)
+
+        Html.RenderPartial("FoodList", Model.Products.Where(prod => prod.ProductOrderStatus == ExcellentTaste.Models.Status.Preparing).Select(x => x.Product).Distinct().ToList());
+
+        @Html.HiddenFor(model => model.ProductString, htmlAttributes: new { id = "hiddenInput" });
+
+        <input type="submit" value="Save" class="btn-save" />
+    }
+
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index", new { }, htmlAttributes: new { @class = "BTListText"})
+</p>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

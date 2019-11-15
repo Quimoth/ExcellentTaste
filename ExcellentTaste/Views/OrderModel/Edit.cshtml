@@ -62,9 +62,8 @@
 
     <div class="form-group">
         @Html.LabelFor(model => model.Products, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.ListBox("ProductList", new SelectList(Model.Products.Select(x => x.Product.Name)), htmlAttributes: new { @class = "ProductOverview"})
-            @Html.DropDownListFor(model => model.ProductIds, new SelectList(@Model.AllProducts, "ProductId", "Name"), htmlAttributes: new { @class = "productSelect" })
+        <div class="col-md-10">            
+            @Html.ActionLink("Products", "OrderOverView", "OrderModel", new { id = Model.OrderId }, htmlAttributes: new { @class="BTListText"})
             @Html.ValidationMessageFor(model => model.Products, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -78,5 +77,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", new { }, htmlAttributes: new { @class = "BTListText" })
 </div>

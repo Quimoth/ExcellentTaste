@@ -14,15 +14,10 @@ namespace ExcellentTaste.Controllers
         private ETContext db = new ETContext();
 
         public ActionResult Index()
-        {
-            return View();
-        }
 
-        public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            List<TableModel> tables = db.Tables.ToList(); /*Where(x => x.TableStatus == TableModel.TableStat.Vrij).ToList();*/
+            return View(tables);
         }
 
         public ActionResult Contact()
