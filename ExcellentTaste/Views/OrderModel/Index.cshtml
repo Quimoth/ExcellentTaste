@@ -12,10 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.OrderStatus)
+            Status
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TimeStamp)
+            Tijd
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Products)
@@ -36,17 +36,14 @@
                 @if (item.TimeStamp != null)
                 {
                     <span>
-                        Date:
-                        @Html.DisplayFor(modelItem => item.TimeStamp.Value.Day)-@Html.DisplayFor(modelItem => item.TimeStamp.Value.Month)-@Html.DisplayFor(modelItem => item.TimeStamp.Value.Year) &nbsp;
-                        Time:
                         @Html.DisplayFor(modelItem => item.TimeStamp.Value.TimeOfDay.Hours):@Html.DisplayFor(modelItem => item.TimeStamp.Value.TimeOfDay.Minutes)
                     </span>
                 }
             </td>
-            <td>
+            <td class="ProductOverflow">
                 @foreach (var prod in item.Products)
                 {
-                    @Html.DisplayFor(modelItem => prod.Product.Name)<span>,</span>
+                    <span>@Html.DisplayFor(modelItem => prod.Product.Name),</span>
                 }
             </td>
             <td>
@@ -59,9 +56,9 @@
                 }
             </td>
             <td>
-                @Html.ActionLink("Add Product", "AddProduct", new { id = item.OrderId }) |
-                @Html.ActionLink("Edit", "Edit", new { id = item.OrderId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.OrderId })
+                @Html.ActionLink("Add Product", "AddProduct", new { id = item.OrderId }, htmlAttributes: new { @class = "DoneButton" })
+                @Html.ActionLink("Edit", "Edit", new { id = item.OrderId }, htmlAttributes: new { @class = "EditButton" })
+
             </td>
         </tr>
     }

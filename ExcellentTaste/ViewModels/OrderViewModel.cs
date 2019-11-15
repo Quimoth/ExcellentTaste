@@ -33,7 +33,7 @@ namespace ExcellentTaste.ViewModels
             {
                 List<string> foodTypes = new List<string>();
                 for(int i = 0; i < 8; i++)
-                {                    
+                {
                     foodTypes.Add(((FoodType)i).ToString());
                 }
                 return foodTypes;

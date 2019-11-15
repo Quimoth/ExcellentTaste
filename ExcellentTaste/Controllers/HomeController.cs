@@ -32,6 +32,23 @@ namespace ExcellentTaste.Controllers
             return View(db.ProductOrders.Include("Product").Where(x => x.ProductOrderStatus == Status.Preparing && (int)x.Product.ProductType > 2));
         }
 
+        public ActionResult DishDone(int id)
+        {
+            ProductOrderModel productOrder = db.ProductOrders.Include("Product").First(x => x.ProductOrderId == id);
+            FoodType foodType = productOrder.Product.ProductType;
+            productOrder.ProductOrderStatus = Status.Done;
+            db.Entry(productOrder).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            if((int)foodType > 2)
+            {
+                return RedirectToAction("Kitchen");
+            }
+            else
+            {
+                return RedirectToAction("Bar");
+            }
+        }
+
         public ActionResult Bar()
         {
             return View(db.ProductOrders.Include("Product").Where(x=> x.ProductOrderStatus == Status.Preparing && (int)x.Product.ProductType < 3));

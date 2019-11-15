@@ -6,6 +6,32 @@
     font-family: Bahnschrift;
 }
 
+.DoneButton,
+.EditButton {
+    display: inline-block;
+    min-width: 100px;
+    font-size: 14px;
+    text-align: center;
+    background-color: #666666;
+    border-style: solid;
+    border-color: white;
+    border-width: 0.5px;
+    padding: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.EditButton {
+    margin-top: 5px;
+}
+
+
+.ProductOverflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 80px;
+}
+
 address a,
 address a:hover {
     color: #eeeeee;
@@ -89,7 +115,7 @@ p a:hover {
     background-color: #666666;
 }
 
-#ProductList{
+#ProductList {
     color: black;
 }
 
@@ -192,8 +218,8 @@ p a:hover {
     font-size: 20px;
     border-width: 4px;
     font-weight: bold;
-    background-color:#666666;
-    padding:0px;
+    background-color: #666666;
+    padding: 0px;
 }
 
 .SubmitButton {
@@ -219,7 +245,7 @@ p a:hover {
 
 .foodCount {
     display: inline-block;
-    min-width:50px;
+    min-width: 50px;
     width: 10%;
     float: right;
 }
@@ -231,7 +257,7 @@ p a:hover {
     .foodCount input {
         float: right;
     }
-   
+
 
 
 .productSelect {

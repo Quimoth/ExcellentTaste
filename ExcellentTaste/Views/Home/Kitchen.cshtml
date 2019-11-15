@@ -8,13 +8,14 @@
 
 @using (@Html.BeginForm())
 {
+    @Html.AntiForgeryToken()
     <table class="table">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Product.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProductOrderStatus)
+                Status
             </th>
             <th>
                 @Html.Label("Save Changes")
@@ -28,23 +29,16 @@
                     @Html.DisplayFor(modelitem => item.Product.Name)
                 </td>
                 <td>
-                    @Html.AntiForgeryToken()
                     <div>
-                        @Html.EnumDropDownListFor(modelItem => item.ProductOrderStatus, htmlAttributes: new { @class = "dropdown" })
+                        @Html.DisplayFor(modelitem => item.ProductOrderStatus)
                     </div>
                 </td>
-
                 <td>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Save" class="btn btn-default" />
-                        </div>
+                    <div>
+                            @Html.ActionLink("Done", "DishDone", new { id = item.ProductOrderId }, htmlAttributes: new { @class="DoneButton"})
                     </div>
                 </td>
             </tr>
-
         }
-
-
     </table>
 }

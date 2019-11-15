@@ -69,7 +69,7 @@ namespace ExcellentTaste.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult OrderOverView([Bind(Include = "OrderId,OrderStatus,TimeStamp,Tables,TableIds,ProductIds,ProductString")] OrderViewModel orderViewModel)
+        public ActionResult OrderOverView([Bind(Include = "OrderId,OrderStatus,TimeStamp,TableIds,ProductIds,ProductString")] OrderViewModel orderViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -183,11 +183,27 @@ namespace ExcellentTaste.Controllers
             if (ModelState.IsValid)
             {
                 OrderModel order = db.Orders.Include("Tables").First(x => x.OrderId == orderViewModel.OrderId);
+
+                //clear list
+                foreach (TableModel table in order.Tables)
+                {
+                    if (!orderViewModel.TableIds.Contains(table.TableId))
+                    {
+                        table.TableStatus = TableModel.TableStat.Vrij;
+                        db.Entry(table).State = EntityState.Modified;
+                    }
+                }
+
+                
+                //add newly selected tables
                 order.Tables.AddRange(db.Tables.Where(table => orderViewModel.TableIds.Contains(table.TableId)));
+
                 foreach(TableModel table in db.Tables.Where(table => orderViewModel.TableIds.Contains(table.TableId)))
                 {
                     table.TableStatus = TableModel.TableStat.Bezet;
+                    db.Entry(table).State = EntityState.Modified;
                 }
+                
                 order.TimeStamp = orderViewModel.TimeStamp;
                 db.Entry(order).State = EntityState.Modified;
                 db.SaveChanges();
